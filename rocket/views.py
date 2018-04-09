@@ -26,7 +26,7 @@ def say_hi(request):
     return HttpResponse(data, content_type=formato)
 
 @csrf_exempt
-def init_api(request):
+def init_tasks(request):
 
     formato = request.META['HTTP_ACCEPT']
 
@@ -48,8 +48,11 @@ def init_api(request):
             description = words[position]
             is_description = get_description(description)
 
-        task = Tasks(description=description,duration=duration, registered=registered,status='completada')
-        task.save()
+        try:
+            task = Tasks(description=description,duration=duration, registered=registered,status='completada')
+            task.save()
+        except Exception:
+            return HttpResponseServerError.status_code
 
         is_description = False
 
