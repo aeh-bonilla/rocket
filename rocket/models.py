@@ -15,4 +15,4 @@ class Tasks(models.Model):
     timestamp_updated = models.DateTimeField(auto_now=True)
 
     def __unicode__(self):
-        return str(self.id) + self.description
+        return str(self.id)+' '+ self.description
