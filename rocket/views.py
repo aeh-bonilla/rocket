@@ -107,8 +107,7 @@ def update_task(request):
             is_updated = True
 
     except Exception:
-         response ={'id':task_id,'status':'error'}
-         return JsonResponse(response)
+         return HttpResponseServerError.status_code
 
     response = {'id':task.id,'status': status,'updated':is_updated}
 
@@ -155,10 +154,10 @@ def list_tasks_by_description(request,q=None):
 def list_task_by_status(request, status=None):
 
     tasks = []
-    formato=request.META['HTTP_ACCEPT']
+    formato = request.META['HTTP_ACCEPT']
 
     try:
-        task_list = Tasks.objects.filter(status=status).order_by(id)
+        task_list = Tasks.objects.filter(status=status)
 
         if formato ==JSON_FORMAT:
             data = serializers.serialize("json",task_list)
