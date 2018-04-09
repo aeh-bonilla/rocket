@@ -7,8 +7,8 @@ urlpatterns = [
     url(r'^api/hi/', say_hi, name='say_hi'),
     url(r'^api/init_tasks/', init_tasks, name='init_tasks'),
     url(r'^api/search/(?P<q>[\w-]+)/$', list_tasks_by_description, name='list_tasks_by_description'),
-    url(r'^api/search_status/(?P<q>[\w-]+)/$', list_task_by_status, name='list_tasks_by_status'),
+    url(r'^api/search_status/(?P<status>[\w-]+)/$', list_task_by_status, name='list_tasks_by_status'),
     url(r'^api/add_task/', add_task, name='add_task'),
     url(r'^api/update_task/', update_task, name='update_task'),
-    url(r'^delete_task/', delete_task, name='delete_task')
+    url(r'^api/delete_task/', delete_task, name='delete_task')
 ]
