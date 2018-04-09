@@ -13,8 +13,17 @@ class RocketTest(APITestCase):
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
+    def test_update_task(self):
+
+        client = APIClient()
+        response=client.post('/api/update_task/', {'id': 1,'description':'modificacion',
+                'duration':72,'registered':90,'status':'pendiente'})
+
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
     def test_delete_task(self):
         client = APIClient()
-        response=client.post('/api/delete_task/', {'id': '7'})
+        response=client.post('/api/delete_task/', {'id': '1'})
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
